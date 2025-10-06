@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+    <div class="container">
+  <form onsubmit="hitAPI(event)">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+</body>
+<script>
+async function hitAPI(event){
+        
+        event.preventDefault();
+        const data = {
+            first_name: document.getElementById("fname").value,
+            last_name: document.getElementById("lname").value,
+            country: document.getElementById("country").value,
+            message: document.getElementById("subject").value
+        }
+        const res = await axios.post("http://192.168.1.6:9000/contact", data);
+        document.getElementById("fname").value = ''
+        document.getElementById("lname").value = ''
+        document.getElementById("country").value = ''
+        document.getElementById("subject").value = ''
+        console.log(res.data);
+        console.log(data)
+    }
+</script>
+</html>
