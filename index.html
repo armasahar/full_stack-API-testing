@@ -44,7 +44,14 @@ async function hitAPI(event){
             country: document.getElementById("country").value,
             message: document.getElementById("subject").value
         }
-        const res = await axios.post("http://192.168.1.6:9000/contact", data);
+    
+        try {
+            const res = await axios.post("https://contact-api-2kdl.onrender.com/contact", data);
+            console.log("Response:", res.data);
+        } catch (err) {
+            console.error("Error sending contact data:", err);
+        }
+    
         document.getElementById("fname").value = ''
         document.getElementById("lname").value = ''
         document.getElementById("country").value = ''
