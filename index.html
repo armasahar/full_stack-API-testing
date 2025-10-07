@@ -46,7 +46,7 @@ async function hitAPI(event){
         }
     
         try {
-            const res = await axios.post("https://contact-api-2kdl.onrender.com/contact", data);
+            const res = await axios.post("https://backend-rendering.onrender.com/contact", data);
             console.log("Response:", res.data);
         } catch (err) {
             console.error("Error sending contact data:", err);
